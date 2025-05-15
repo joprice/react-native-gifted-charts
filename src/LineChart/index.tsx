@@ -659,6 +659,7 @@ export const LineChart = (props: LineChartPropsType) => {
         dataPointsRadius,
         text,
         customDataPoint,
+        dataPointLabelComponentKey,
         dataPointLabelComponent;
       if (
         index === selectedIndex &&
@@ -701,6 +702,8 @@ export const LineChart = (props: LineChartPropsType) => {
           item.dataPointLabelComponent ||
           props.focusedDataPointLabelComponent ||
           props.dataPointLabelComponent;
+        dataPointLabelComponentKey =
+          item.dataPointLabelComponentKey || props.dataPointLabelComponentKey;
       } else {
         dataPointsShape = item.dataPointShape || dataPtsShape;
         dataPointsWidth = item.dataPointWidth || dataPtsWidth;
@@ -713,6 +716,8 @@ export const LineChart = (props: LineChartPropsType) => {
         customDataPoint = item.customDataPoint || props.customDataPoint;
         dataPointLabelComponent =
           item.dataPointLabelComponent || props.dataPointLabelComponent;
+        dataPointLabelComponentKey =
+          item.dataPointLabelComponentKey || props.dataPointLabelComponentKey;
       }
 
       if (showValuesAsDataPointsText) {
@@ -853,7 +858,7 @@ export const LineChart = (props: LineChartPropsType) => {
               {dataPointLabelComponent ? (
                 !showTextOnFocus || index === selectedIndex ? (
                   <ForeignObject
-                    key="test"
+                    key={dataPointLabelComponentKey?.()}
                     height={svgHeight}
                     width={dataPointLabelWidth}
                     x={
