@@ -268,7 +268,7 @@ export var LineChart = function (props) {
             if (item.hideDataPoint) {
                 return null;
             }
-            var dataPointsShape, dataPointsWidth, dataPointsHeight, dataPointsColor, dataPointsRadius, text, customDataPoint, dataPointLabelComponent;
+            var dataPointsShape, dataPointsWidth, dataPointsHeight, dataPointsColor, dataPointsRadius, text, customDataPoint, dataPointLabelComponentKey, dataPointLabelComponent;
             if (index === selectedIndex &&
                 (focusTogether || key === selectedLineNumber)) {
                 dataPointsShape =
@@ -305,6 +305,8 @@ export var LineChart = function (props) {
                         item.dataPointLabelComponent ||
                         props.focusedDataPointLabelComponent ||
                         props.dataPointLabelComponent;
+                dataPointLabelComponentKey =
+                    item.dataPointLabelComponentKey || props.dataPointLabelComponentKey;
             }
             else {
                 dataPointsShape = item.dataPointShape || dataPtsShape;
@@ -318,6 +320,8 @@ export var LineChart = function (props) {
                 customDataPoint = item.customDataPoint || props.customDataPoint;
                 dataPointLabelComponent =
                     item.dataPointLabelComponent || props.dataPointLabelComponent;
+                dataPointLabelComponentKey =
+                    item.dataPointLabelComponentKey || props.dataPointLabelComponentKey;
             }
             if (showValuesAsDataPointsText) {
                 text = originalDataFromProps[index].value;
@@ -378,7 +382,7 @@ export var LineChart = function (props) {
                                         (focusTogether || key == selectedLineNumber)
                                         ? dataPointLabelComponent(item, index) // not pushed in latest release
                                         : null
-                                    : dataPointLabelComponent(item, index) }, "test")) : null) : text || item.dataPointText ? (!showTextOnFocus || index === selectedIndex ? (_jsx(CanvasText, { fill: item.textColor || textColor, fontSize: item.textFontSize || textFontSize, x: getX(spacingArray, index) -
+                                    : dataPointLabelComponent(item, index) }, dataPointLabelComponentKey === null || dataPointLabelComponentKey === void 0 ? void 0 : dataPointLabelComponentKey())) : null) : text || item.dataPointText ? (!showTextOnFocus || index === selectedIndex ? (_jsx(CanvasText, { fill: item.textColor || textColor, fontSize: item.textFontSize || textFontSize, x: getX(spacingArray, index) -
                                     dataPointsWidth +
                                     (item.textShiftX || props.textShiftX || 0), y: getYOrSecondaryY(item.value) -
                                     dataPointsHeight / 2 +
