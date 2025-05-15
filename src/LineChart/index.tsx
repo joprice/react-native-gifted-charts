@@ -853,6 +853,7 @@ export const LineChart = (props: LineChartPropsType) => {
               {dataPointLabelComponent ? (
                 !showTextOnFocus || index === selectedIndex ? (
                   <ForeignObject
+                    key="test"
                     height={svgHeight}
                     width={dataPointLabelWidth}
                     x={
